@@ -1,5 +1,7 @@
 name: Django CI
 
+run-name: ${{ github.actor }} is the actor that triggered the workflow run
+
 on:
   push:
     branches: [ "master" ]
@@ -7,17 +9,15 @@ on:
     branches: [ "master" ]
 
 jobs:
-  build:
+  test:
 
     runs-on: ubuntu-latest
-    strategy:
-      max-parallel: 4
-      matrix:
-        python-version: [3.9]
-
     steps:
-    - name: Check out the repository
-      uses: actions/checkout@v2
+    - uses: actions/checkout@v3
+    - name: Set up Python 3.9
+      uses: actions/setup-python@v3
+      with:
+        python-version: "3.9"
       
     - name: Install dependencies
       uses: VaultVulp/action-pipenv@v2.0.1
