@@ -1,7 +1,5 @@
 name: Django CI
 
-run-name: ${{ github.actor }} is the actor that triggered the workflow run
-
 on:
   push:
     branches: [ "master" ]
@@ -12,19 +10,24 @@ jobs:
   test:
 
     runs-on: ubuntu-latest
+
     steps:
-    - uses: actions/checkout@v3
+    - name: ${{ github.actor }} is the actor that triggered the workflow run
+      run: echo "The actor that triggered the workflow run is ${{ github.actor }}"
+    
+    - name: Checkout repository
+      uses: actions/checkout@v3
+      
     - name: Set up Python 3.9
       uses: actions/setup-python@v3
       with:
         python-version: "3.9"
-      
+    
     - name: Install dependencies
-      uses: VaultVulp/action-pipenv@v2.0.1
-      with:
-        command: install
+      run: |
+        pip install pipenv
+        pipenv install --dev
     
     - name: Run Django tests
-      uses: VaultVulp/action-pipenv@v2.0.1
-      with:
-        command: run python manage.py test
+      run: |
+        pipenv run python manage.py test
