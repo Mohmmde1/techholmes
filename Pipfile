@@ -10,6 +10,7 @@ dj-database-url = "*"
 django-debug-toolbar = "*"
 
 [dev-packages]
+djlint = "*"
 
 [requires]
 python_version = "3.9"
