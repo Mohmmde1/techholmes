@@ -44,6 +44,7 @@ class Dev(Configuration):
         'django.contrib.messages',
         'django.contrib.staticfiles',
         'debug_toolbar',
+        'holmes_auth',
     ])
 
     MIDDLEWARE = values.ListValue([
@@ -143,6 +144,8 @@ class Dev(Configuration):
     INTERNAL_IPS = values.ListValue(default=[
         "127.0.0.1",
     ])
+    
+    AUTH_USER_MODEL = values.Value('holmes_auth.User')
 
 
 class Prod(Dev):
