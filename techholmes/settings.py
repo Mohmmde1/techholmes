@@ -12,12 +12,16 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 
+import logging
 from configurations import Configuration, values
 from configurations import values
+
+logger = logging.getLogger(__name__)
+
+
 class Dev(Configuration):
     # Build paths inside the project like this: BASE_DIR / 'subdir'.
     BASE_DIR = Path(__file__).resolve().parent.parent
-
 
     # Quick-start development settings - unsuitable for production
     # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
@@ -29,7 +33,6 @@ class Dev(Configuration):
     DEBUG = values.BooleanValue(True)
 
     ALLOWED_HOSTS = values.ListValue([])
-
 
     # Application definition
 
@@ -70,14 +73,31 @@ class Dev(Configuration):
         },
     ])
 
-    WSGI_APPLICATION = values.Value('techholmes.wsgi.application')
+    LOGGING = values.DictValue(default={
+        "version": 1,
+        "disable_existing_loggers": False,
+        "formatters": {
+            "verbose": {
+                "format": "{levelname} {asctime} {module} {process:d} {thread:d} {message}", "style": "{", }, },
+        "handlers": {
+            "console": {
+                "class": "logging.StreamHandler",
+                "stream": "ext://sys.stdout",
+                "formatter": "verbose",
+            },
+        },
+        "root": {
+            "handlers": ["console"],
+            "level": "DEBUG",
+        },
+    })
 
+    WSGI_APPLICATION = values.Value('techholmes.wsgi.application')
 
     # Database
     # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
     DATABASES = values.DatabaseURLValue(f"sqlite:///{BASE_DIR}/db.sqlite3")
-
 
     # Password validation
     # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -97,7 +117,6 @@ class Dev(Configuration):
         },
     ])
 
-
     # Internationalization
     # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
@@ -108,7 +127,6 @@ class Dev(Configuration):
     USE_I18N = values.BooleanValue(True)
 
     USE_TZ = values.BooleanValue(True)
-
 
     # Static files (CSS, JavaScript, Images)
     # https://docs.djangoproject.com/en/4.2/howto/static-files/
