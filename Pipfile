@@ -9,6 +9,7 @@ django-configurations = "*"
 dj-database-url = "*"
 django-debug-toolbar = "*"
 crispy-bootstrap5 = "*"
+django-registration = "*"
 
 [dev-packages]
 djlint = "*"
