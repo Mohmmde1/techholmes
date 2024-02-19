@@ -18,9 +18,11 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django_registration.backends.activation.views import RegistrationView
+from django_registration.backends.activation.views import RegistrationView
 
 import debug_toolbar
 
+from holmes_auth.forms import HolmesRegistrationForm
 from holmes_auth.forms import HolmesRegistrationForm
 from holmes_auth.views import profile
 
