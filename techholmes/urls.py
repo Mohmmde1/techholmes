@@ -17,21 +17,23 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
-# from django_registration.backends.activation.views import RegistrationView
+from django_registration.backends.activation.views import RegistrationView
 
 import debug_toolbar
 
+from holmes_auth.forms import HolmesRegistrationForm
 from holmes_auth.views import profile
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("accounts/", include("django.contrib.auth.urls")),
     path("accounts/profile/", profile, name="profile"),
-    # path(
-    #     "accounts/register/", RegistrationView.as_view(form_class=HolmesRegistrationForm),
-    #     name="django_registration_register",
-    # ),
-    # path("accounts/", include("django_registration.backends.activation.urls")),
+    path(
+        "accounts/register/", RegistrationView.as_view(
+            form_class=HolmesRegistrationForm),
+        name="django_registration_register",
+    ),
+    path("accounts/", include("django_registration.backends.activation.urls")),
 ]
 
 if settings.DEBUG:

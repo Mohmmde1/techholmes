@@ -150,8 +150,13 @@ class Dev(Configuration):
     
     AUTH_USER_MODEL = values.Value('holmes_auth.User')
     
-    CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
-    CRISPY_TEMPLATE_PACK = "bootstrap5"
+    CRISPY_ALLOWED_TEMPLATE_PACKS = values.Value("bootstrap5")
+    
+    CRISPY_TEMPLATE_PACK = values.Value("bootstrap5")
+    
+    ACCOUNT_ACTIVATION_DAYS = values.IntegerValue(7)
+    
+    EMAIL_BACKEND = values.Value("django.core.mail.backends.console.EmailBackend")
 
 
 class Prod(Dev):
