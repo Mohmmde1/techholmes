@@ -28,7 +28,7 @@ class HolmesUserManager(UserManager):
 
 
 class User(AbstractUser):
-
+    username = None
     email = models.EmailField(_("email address"), unique=True)
     objects = HolmesUserManager()
 
