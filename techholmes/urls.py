@@ -28,12 +28,14 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path("accounts/", include("django.contrib.auth.urls")),
     path("accounts/profile/", profile, name="profile"),
+    path("accounts/", include("allauth.urls")),
     path(
         "accounts/register/", RegistrationView.as_view(
             form_class=HolmesRegistrationForm),
         name="django_registration_register",
     ),
     path("accounts/", include("django_registration.backends.activation.urls")),
+    
 ]
 
 if settings.DEBUG:
