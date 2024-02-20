@@ -11,6 +11,7 @@ django-debug-toolbar = "*"
 crispy-bootstrap5 = "*"
 django-registration = "*"
 django-allauth = "*"
+pillow = "*"
 
 [dev-packages]
 djlint = "*"

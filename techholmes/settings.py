@@ -52,9 +52,11 @@ class Dev(Configuration):
         'allauth',
         'allauth.account',
         'allauth.socialaccount',
-        'allauth.socialaccount.providers.google'
+        'allauth.socialaccount.providers.google',
+        'products',
     ])
 
+    
     MIDDLEWARE = values.ListValue([
         'debug_toolbar.middleware.DebugToolbarMiddleware',
         'django.middleware.security.SecurityMiddleware',
