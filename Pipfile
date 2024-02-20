@@ -8,8 +8,12 @@ django-crispy-forms = "*"
 django-configurations = "*"
 dj-database-url = "*"
 django-debug-toolbar = "*"
+crispy-bootstrap5 = "*"
+django-registration = "*"
+django-allauth = "*"
 
 [dev-packages]
+djlint = "*"
 
 [requires]
 python_version = "3.9"

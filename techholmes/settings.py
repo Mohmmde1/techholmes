@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
+import os
 from pathlib import Path
 
 import logging
@@ -44,6 +45,14 @@ class Dev(Configuration):
         'django.contrib.messages',
         'django.contrib.staticfiles',
         'debug_toolbar',
+        'holmes_auth',
+        'crispy_forms',
+        'crispy_bootstrap5',
+        'django.contrib.sites',
+        'allauth',
+        'allauth.account',
+        'allauth.socialaccount',
+        'allauth.socialaccount.providers.google'
     ])
 
     MIDDLEWARE = values.ListValue([
@@ -55,6 +64,7 @@ class Dev(Configuration):
         'django.contrib.auth.middleware.AuthenticationMiddleware',
         'django.contrib.messages.middleware.MessageMiddleware',
         'django.middleware.clickjacking.XFrameOptionsMiddleware',
+        'allauth.account.middleware.AccountMiddleware'
     ])
 
     ROOT_URLCONF = values.Value('techholmes.urls')
@@ -62,7 +72,7 @@ class Dev(Configuration):
     TEMPLATES = values.ListValue(default=[
         {
             'BACKEND': 'django.template.backends.django.DjangoTemplates',
-            'DIRS': [],
+            'DIRS': [os.path.join(BASE_DIR, 'templates')],
             'APP_DIRS': True,
             'OPTIONS': {
                 'context_processors': [
@@ -143,6 +153,24 @@ class Dev(Configuration):
     INTERNAL_IPS = values.ListValue(default=[
         "127.0.0.1",
     ])
+
+    AUTH_USER_MODEL = values.Value('holmes_auth.User')
+
+    CRISPY_ALLOWED_TEMPLATE_PACKS = values.Value("bootstrap5")
+
+    CRISPY_TEMPLATE_PACK = values.Value("bootstrap5")
+
+    ACCOUNT_ACTIVATION_DAYS = values.IntegerValue(7)
+
+    EMAIL_BACKEND = values.Value(
+        "django.core.mail.backends.console.EmailBackend")
+
+    SITE_ID = values.IntegerValue(1)
+
+    ACCOUNT_USER_MODEL_USERNAME_FIELD = None
+    ACCOUNT_EMAIL_REQUIRED = values.BooleanValue(True)
+    ACCOUNT_USERNAME_REQUIRED = values.BooleanValue(False)
+    ACCOUNT_AUTHENTICATION_METHOD = values.Value("email")
 
 
 class Prod(Dev):
