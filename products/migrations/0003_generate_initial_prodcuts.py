@@ -12,6 +12,10 @@ from products.models import Category, Tag, Product
 
 fake = Faker()
 
+def reverse_products(apps, schema_editor):
+    Product = apps.get_model('products', 'Product')
+    Product.objects.all().delete()
+    
 def generate_products(apps, schema_editor):
     num_products = 100 
     categories = Category.objects.all()
@@ -45,5 +49,5 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.RunPython(lambda apps, schema_editor: transaction.atomic()(generate_products)(apps, schema_editor)),
+        migrations.RunPython(lambda apps, schema_editor: transaction.atomic()(generate_products)(apps, schema_editor), reverse_code=reverse_products),
     ]
