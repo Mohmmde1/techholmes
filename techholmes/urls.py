@@ -19,6 +19,7 @@ from django.urls import path, include
 from django.conf import settings
 from django_registration.backends.activation.views import RegistrationView
 from django_registration.backends.activation.views import RegistrationView
+from django.conf.urls.static import static
 
 import debug_toolbar
 
@@ -37,10 +38,13 @@ urlpatterns = [
         name="django_registration_register",
     ),
     path("accounts/", include("django_registration.backends.activation.urls")),
+    path('products/', include('products.urls')),
     
 ]
 
 if settings.DEBUG:
     urlpatterns += [
         path("__debug__/", include(debug_toolbar.urls)),
+        static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)[0]
     ]
+    

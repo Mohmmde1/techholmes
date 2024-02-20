@@ -173,8 +173,14 @@ class Dev(Configuration):
     ACCOUNT_EMAIL_REQUIRED = values.BooleanValue(True)
     ACCOUNT_USERNAME_REQUIRED = values.BooleanValue(False)
     ACCOUNT_AUTHENTICATION_METHOD = values.Value("email")
+    
+
+    MEDIA_URL = '/media/'
+    MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 
 
 class Prod(Dev):
     DEBUG = False
     SECRET_KEY = values.SecretValue()
+    
