@@ -1,9 +1,13 @@
 from django.shortcuts import render, get_object_or_404
+from django.views.generic import ListView
 from .models import Product
 
-def product_list(request):
-    products = Product.objects.all()
-    return render(request, 'products/product_list.html', {'products': products})
+
+
+
+class ProductListView(ListView):
+    paginate_by = 9
+    model = Product
 
 def product_detail(request, slug):
     product = get_object_or_404(Product, slug=slug)
