@@ -10,4 +10,5 @@ class ProductFilter(django_filters.FilterSet):
             'name': ['icontains'],
             'price': ['lt', 'gt'],
             'category': ['exact'],
+            'tags': ['exact'],
         }
