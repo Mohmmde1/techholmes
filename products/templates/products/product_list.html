@@ -2,45 +2,10 @@
 {% load crispy_forms_tags %}
 {% block content %}
     <div class="container">
-        <h1 class="mt-5 mb-4">Product List</h1>
-        <div class="row row-cols-1 row-cols-md-3 g-4">
-            {% for product in page_obj %}
-                <div class="col">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <h5 class="card-title">
-                                <a href='{% url "product_detail" slug=product.slug %}'>{{ product.name }}</a>
-                            </h5>
-                            {% if product.image %}
-                                <img src="{{ product.image.url }}"
-                                     class="card-img-top"
-                                     alt="{{ product.name }}">
-                            {% endif %}
-                            <p class="card-text">{{ product.description }}</p>
-                        </div>
-                        <div class="card-footer text-end">
-                            <small class="text-muted">{{ product.price }} RM</small>
-                        </div>
-                    </div>
-                </div>
-            {% endfor %}
+        <div class="row">
+            <div class="col">
+                {% include "products/products_view.html" %}
+            </div>
         </div>
     </div>
-    <div class="container-fluid d-flex border justify-content-center align-items-center p-4">
-        <nav aria-label="...">
-            <ul class="pagination">
-                <li class="page-item {% if not page_obj.has_previous %}disabled{% endif %}">
-                    <a class="page-link" href="?page={{ page_obj.number|add:"-1" }}"> <span aria-hidden="true">&laquo;</span></a>
-                </li>
-                {% for page_number in page_obj.paginator.page_range %}
-                    <li class="page-item {% if page_obj.number == page_number %}active{% endif %}">
-                        <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
-                    </li>
-                {% endfor %}
-                <li class="page-item {% if not page_obj.has_next %}disabled{% endif %}">
-                    <a class="page-link" href="?page={{ page_obj.number|add:"+1" }}"><span aria-hidden="true">&raquo;</span></a>
-                </li>
-            </ul>
-        </nav>
-    </div
 {% endblock %}
