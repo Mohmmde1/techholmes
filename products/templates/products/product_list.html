@@ -3,8 +3,11 @@
 {% block content %}
     <div class="container">
         <div class="row">
-            <div class="col">
-                {% include "products/products_view.html" %}
+            <div class="col-2">
+                {% include "products/product_filter.html" %}
+            </div>
+            <div class="col-10">
+                {% include "products/product_view.html" %}
             </div>
         </div>
     </div>

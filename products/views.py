@@ -1,13 +1,17 @@
 from django.shortcuts import render, get_object_or_404
-from django.views.generic import ListView
+
+from django_filters.views import FilterView
+from products.filters import ProductFilter
 from .models import Product
 
 
 
 
-class ProductListView(ListView):
+class ProductListView(FilterView):
     paginate_by = 9
-    model = Product
+    filterset_class = ProductFilter
+    template_name = 'products/product_list.html'
+    
 
 def product_detail(request, slug):
     product = get_object_or_404(Product, slug=slug)
