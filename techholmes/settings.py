@@ -54,6 +54,7 @@ class Dev(Configuration):
         'allauth.socialaccount',
         'allauth.socialaccount.providers.google',
         'products',
+        'django_filters',
     ])
 
     
