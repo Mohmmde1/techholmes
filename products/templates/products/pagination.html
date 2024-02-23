@@ -1,0 +1,18 @@
+{% load  products_extras %}
+<div class="container-fluid d-flex border justify-content-center align-items-center p-4">
+    <nav aria-label="...">
+        <ul class="pagination">
+            <li class="page-item {% if not page_obj.has_previous %}disabled{% endif %}">
+                <a class="page-link" href="?{% query_replace request 'page' page_obj.number|add:"-1"  %}"> <span aria-hidden="true">&laquo;</span></a>
+            </li>
+            {% for page_number in page_obj.paginator.page_range %}
+                <li class="page-item {% if page_obj.number == page_number %}active{% endif %}">
+                    <a class="page-link" href="?{% query_replace request 'page' page_number %}">{{ page_number }}</a>
+                </li>
+            {% endfor %}
+            <li class="page-item {% if not page_obj.has_next %}disabled{% endif %}">
+                <a class="page-link" href="?{% query_replace request 'page' page_obj.number|add:"+1"  %}"><span aria-hidden="true">&raquo;</span></a>
+            </li>
+        </ul>
+    </nav>
+</div

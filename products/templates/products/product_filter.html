@@ -1,0 +1,10 @@
+{% load crispy_forms_tags %}
+{% block content %}
+    <div class="container-fluid border">
+        <h2>Filter</h2>
+        <form method="GET">
+            {{ filter.form|crispy }}
+            <input class="btn btn-primary" type="submit" />
+        </form>
+    </div>
+{% endblock %}

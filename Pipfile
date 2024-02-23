@@ -11,9 +11,12 @@ django-debug-toolbar = "*"
 crispy-bootstrap5 = "*"
 django-registration = "*"
 django-allauth = "*"
+pillow = "*"
+django-filter = "*"
 
 [dev-packages]
 djlint = "*"
+faker = "*"
 
 [requires]
 python_version = "3.9"
