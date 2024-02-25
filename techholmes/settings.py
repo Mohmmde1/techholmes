@@ -55,9 +55,10 @@ class Dev(Configuration):
         'allauth.socialaccount.providers.google',
         'products',
         'django_filters',
+        'cart'
     ])
 
-    
+
     MIDDLEWARE = values.ListValue([
         'debug_toolbar.middleware.DebugToolbarMiddleware',
         'django.middleware.security.SecurityMiddleware',
@@ -174,7 +175,7 @@ class Dev(Configuration):
     ACCOUNT_EMAIL_REQUIRED = values.BooleanValue(True)
     ACCOUNT_USERNAME_REQUIRED = values.BooleanValue(False)
     ACCOUNT_AUTHENTICATION_METHOD = values.Value("email")
-    
+
 
     MEDIA_URL = '/media/'
     MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
@@ -184,4 +185,3 @@ class Dev(Configuration):
 class Prod(Dev):
     DEBUG = False
     SECRET_KEY = values.SecretValue()
-    
