@@ -7,21 +7,49 @@
     <form method="post" action="{% url 'update_cart' %}">
         {% csrf_token %}
 
-        <table class="table">
+        <table class="table-hover table">
             <thead>
                 <tr class="row">
-                    <th scope="col" class="col-md-1">Product</th>
-                    <th scope="col" class="col-md-1">Quantity</th>
-                    <th scope="col" class="col-md-1">Price</th>
-                    <th scope="col" class="col-md-2">Total</th>
-                    <th scope="col" class="col-md-2">Action</th>
+                    <th
+                        scope="col"
+                        class="col-md-2 d-flex justify-content-center border"
+                    >
+                        Product
+                    </th>
+                    <th
+                        scope="col"
+                        class="col-md-1 d-flex justify-content-center border"
+                    >
+                        Quantity
+                    </th>
+                    <th
+                        scope="col"
+                        class="col-md-1 d-flex justify-content-center border"
+                    >
+                        Price
+                    </th>
+
+                    <th
+                        scope="col"
+                        class="col-md-1 d-flex justify-content-center border"
+                    >
+                        Action
+                    </th>
+                    <th
+                        scope="col"
+                        class="col-md-1 d-flex justify-content-center border"
+                    >
+                        Total
+                    </th>
                 </tr>
             </thead>
             <tbody>
                 {% for item in cart.items.all %}
                 <tr class="row">
-                    <td class="col-md-1">{{ item.product.name }}</td>
-                    <td class="col-md-1">
+                    <td class="col-md-2 d-flex justify-content-center">
+                        {{ item.product.name }}
+                    </td>
+                    <td class="col-md-1 d-flex justify-content-center">
                         <input
                             type="number"
                             name="quantity_{{ item.id }}"
@@ -30,19 +58,46 @@
                             class="form-control"
                         />
                     </td>
-                    <td class="col-md-1">{{ item.product.price }}</td>
-                    <td class="col-md-1">
-                        {% widthratio item.quantity 1 item.product.price %}
+                    <td class="col-md-1 d-flex justify-content-center">
+                        {{ item.product.price }}
                     </td>
-                    <td class="col-md-2">
+
+                    <td class="col-md-1 d-flex justify-content-center">
                         <input
                             class="btn btn-primary"
                             type="submit"
                             value="Update"
                         />
                     </td>
+                    <td class="col-md-1 d-flex justify-content-center">
+                        {% widthratio item.quantity 1 item.product.price %}
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="5">Your cart is empty.</td>
                 </tr>
                 {% endfor %}
+                <tr class="row">
+                    <td class="col-md-1 d-flex justify-content-center"></td>
+                    <td class="col-md-1 d-flex justify-content-center"></td>
+                    <td class="col-md-1 d-flex justify-content-center"></td>
+                    <td class="col-md-2 d-flex justify-content-center">
+                        Subtotal
+                    </td>
+                    <td class="col-md-1 d-flex justify-content-center">
+                        {{cart.total}}
+                    </td>
+                </tr>
+                <tr class="row">
+                    <td class="col-md-1 d-flex justify-content-center"></td>
+                    <td class="col-md-1 d-flex justify-content-center"></td>
+                    <td class="col-md-1 d-flex justify-content-center"></td>
+                    <td class="col-md-2 d-flex justify-content-center"></td>
+                    <td class="col-md-1 d-flex justify-content-center">
+                        <a class="btn btn-primary" href="#">Checkout</a>
+                    </td>
+                </tr>
             </tbody>
         </table>
     </form>

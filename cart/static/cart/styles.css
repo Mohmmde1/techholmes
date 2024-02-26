@@ -14,9 +14,7 @@
     background-color: #343a40; /* Dark background color for table header */
     color: #fff; /* Light text color for table header */
 }
-.table tbody tr:hover {
-    background-color: #f5f5f5; /* Light background color on hover */
-}
+
 .form-control {
     text-align: center; /* Center align text inside input boxes */
 }
