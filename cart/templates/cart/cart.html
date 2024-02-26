@@ -1,21 +1,25 @@
 {% extends "base.html" %} {% block content %}
 <h1>Your Cart</h1>
-<table>
-    <thead>
+<table class="table">
+    <thead class="table-dark">
         <tr>
-            <th>Product</th>
-            <th>Quantity</th>
-            <th>Price</th>
-            <th>Total</th>
+            <th scope="col">Product</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Price</th>
+            <th scope="col">Total</th>
+            <th scope="col">Action</th>
         </tr>
     </thead>
     <tbody>
         {% for item in cart.items.all %}
-        <tr>
+        <tr scope="row">
             <td>{{ item.product.name }}</td>
-            <td>{{ item.quantity }}</td>
+            <td><input clss="form-control" value="{{ item.quantity }}" /></td>
             <td>{{ item.product.price }}</td>
             <td>{% widthratio item.quantity 1 item.product.price %}</td>
+            <td>
+                <a class="btn btn-primary" href="#">Update</a>
+            </td>
         </tr>
         {% endfor %}
     </tbody>
