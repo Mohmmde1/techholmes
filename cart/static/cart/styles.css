@@ -1,0 +1,24 @@
+/* Custom CSS for styling the table */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px; /* Add margin bottom for spacing */
+}
+.table th,
+.table td {
+    padding: 8px; /* Add padding to cells */
+    text-align: left;
+    border-bottom: 1px solid #dee2e6; /* Add border bottom for each row */
+}
+.table th {
+    background-color: #343a40; /* Dark background color for table header */
+    color: #fff; /* Light text color for table header */
+}
+
+.form-control {
+    text-align: center; /* Center align text inside input boxes */
+}
+.btn-primary {
+    display: block;
+    margin: 0 auto; /* Center the action button */
+}

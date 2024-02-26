@@ -39,7 +39,8 @@ urlpatterns = [
     ),
     path("accounts/", include("django_registration.backends.activation.urls")),
     path('products/', include('products.urls')),
-    
+    path('cart/', include('cart.urls')),
+
 ]
 
 if settings.DEBUG:
@@ -47,4 +48,3 @@ if settings.DEBUG:
         path("__debug__/", include(debug_toolbar.urls)),
         static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)[0]
     ]
-    
