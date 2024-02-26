@@ -1,39 +1,50 @@
-{% extends "base.html" %} {% block content %}
-<h1>Your Cart</h1>
-<form method="post" action="{% url 'update_cart' %}">
-    {% csrf_token %}
-    <table class="table">
-        <thead class="table-dark">
-            <tr>
-                <th scope="col">Product</th>
-                <th scope="col">Quantity</th>
-                <th scope="col">Price</th>
-                <th scope="col">Total</th>
-                <th scope="col">Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for item in cart.items.all %}
-            <tr scope="row">
-                <td>{{ item.product.name }}</td>
-                <td>
-                    <input
-                        type="number"
-                        name="quantity_{{ item.id }}"
-                        value="{{ item.quantity }}"
-                        min="0"
-                        class="form-control"
-                    />
-                </td>
-                <td>{{ item.product.price }}</td>
-                <td>{% widthratio item.quantity 1 item.product.price %}</td>
-                <td>
-                    <input class="btn btn-primary" type="submit" />
-                </td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-</form>
+{% extends "base.html" %} {% load static %} {% block head %}
+<link rel="stylesheet" href="{% static 'cart/styles.css' %}" />
+{% endblock %} {% block content %}
 
+<h1>Your Cart</h1>
+<div class="container-fluid">
+    <form method="post" action="{% url 'update_cart' %}">
+        {% csrf_token %}
+
+        <table class="table">
+            <thead>
+                <tr class="row">
+                    <th scope="col" class="col-md-1">Product</th>
+                    <th scope="col" class="col-md-1">Quantity</th>
+                    <th scope="col" class="col-md-1">Price</th>
+                    <th scope="col" class="col-md-2">Total</th>
+                    <th scope="col" class="col-md-2">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in cart.items.all %}
+                <tr class="row">
+                    <td class="col-md-1">{{ item.product.name }}</td>
+                    <td class="col-md-1">
+                        <input
+                            type="number"
+                            name="quantity_{{ item.id }}"
+                            value="{{ item.quantity }}"
+                            min="0"
+                            class="form-control"
+                        />
+                    </td>
+                    <td class="col-md-1">{{ item.product.price }}</td>
+                    <td class="col-md-1">
+                        {% widthratio item.quantity 1 item.product.price %}
+                    </td>
+                    <td class="col-md-2">
+                        <input
+                            class="btn btn-primary"
+                            type="submit"
+                            value="Update"
+                        />
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </form>
+</div>
 {% endblock %}
