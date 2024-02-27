@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404
 
@@ -19,6 +19,9 @@ def get_cart(request):
 def make_order(request):
     # Get the cart for the current user
     cart = get_cart(request)
+
+    if len(cart.items.all()) == 0:
+        return redirect('cart')
 
     # Create an order based on the cart
     order = Order.objects.create(
