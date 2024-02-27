@@ -1,0 +1,24 @@
+{% extends "base.html" %} {% load static %} {% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">Order Confirmation</div>
+                <div class="card-body">
+                    <p>Your order has been successfully placed.</p>
+                    <h5>Order Details:</h5>
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            Order ID: {{ order.id }}
+                        </li>
+                        <li class="list-group-item">
+                            Total Amount: ${{ order.total }}
+                        </li>
+                        <!-- Add more order details here as needed -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
