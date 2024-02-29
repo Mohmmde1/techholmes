@@ -1,6 +1,6 @@
 from django.shortcuts import redirect, render
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render
 
 from cart.models import Cart
 from .models import Order, OrderItem
@@ -46,3 +46,8 @@ def make_order(request):
 def display_orders(request):
     orders = Order.objects.all()
     return render(request, 'orders/orders.html', {"orders": orders})
+
+@login_required
+def display_order(request, slug):
+    order = Order.objects.get(slug=slug)
+    return render(request, 'orders/order_details.html', {"order": order})

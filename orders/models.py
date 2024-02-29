@@ -18,6 +18,7 @@ class Order(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     total = models.DecimalField(max_digits=10, decimal_places=2, default=0)
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='PENDING')
+    slug = models.SlugField(unique=True)
 
     def __str__(self):
             return f"by {self.user.email} - Status: {self.status}, Total: {self.total}"
