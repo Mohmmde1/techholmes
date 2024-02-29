@@ -55,7 +55,8 @@ class Dev(Configuration):
         'allauth.socialaccount.providers.google',
         'products',
         'django_filters',
-        'cart'
+        'cart',
+        'orders'
     ])
 
 

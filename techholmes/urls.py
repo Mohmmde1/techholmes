@@ -40,6 +40,7 @@ urlpatterns = [
     path("accounts/", include("django_registration.backends.activation.urls")),
     path('products/', include('products.urls')),
     path('cart/', include('cart.urls')),
+    path('order', include('orders.urls')),
 
 ]
 

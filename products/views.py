@@ -19,5 +19,4 @@ class ProductListView(FilterView):
 def product_detail(request, slug):
     product = get_object_or_404(Product, slug=slug)
     add_cart_form = AddCartForm(product_slug=slug)
-    print(f'form: {add_cart_form}')
     return render(request, 'products/product_detail.html', {'product': product, 'add_cart_form':add_cart_form})

@@ -1,7 +1,8 @@
 from django.db import models
-
 from products.models import Product
 from holmes_auth.models import User
+from django.utils.text import slugify
+
 class Cart(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
